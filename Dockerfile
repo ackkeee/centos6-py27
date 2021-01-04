@@ -23,6 +23,7 @@ RUN yum update -y \
   python-devel \
   curl \
   wget \
+  postfix \
   yum clean all
 
 # python version up.
@@ -39,4 +40,7 @@ RUN mkdir ${WORKSPACE} \
 RUN wget https://bootstrap.pypa.io/get-pip.py \
   && python get-pip.py \
   && pip install supervisor
+
+# Pre-start Postfix
+COPY ./main.cf /etc/postfix/main.cf
 
